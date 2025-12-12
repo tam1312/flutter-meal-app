@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/models/category_model.dart';
 import 'package:meal_app/screens/category_dish_screen.dart';
-import 'package:meal_app/screens/favorite_screen.dart';
+import 'package:meal_app/screens/favorites_screen.dart';
 import 'package:meal_app/screens/recipe_screen.dart';
 import '../services/api_service.dart';
 
@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 //print("Favorites icon");
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: 
-                    (BuildContext context) => FavoriteScreen()
+                    (BuildContext context) => FavoritesScreen()
                   ),
                 );
               }, 

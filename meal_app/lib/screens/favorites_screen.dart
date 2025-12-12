@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/screens/recipe_screen.dart';
 
-class FavoriteScreen extends StatefulWidget {
-    FavoriteScreen({super.key});
+class FavoritesScreen extends StatefulWidget {
+    FavoritesScreen({super.key});
 
   @override
-  State<FavoriteScreen> createState() => _FavoriteScreenState();
+  State<FavoritesScreen> createState() => _FavoritesScreenState();
 }
 
-class _FavoriteScreenState extends State<FavoriteScreen> {
+class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
