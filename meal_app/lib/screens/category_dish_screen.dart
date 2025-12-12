@@ -72,7 +72,7 @@ class  _CategoryDishScreenState extends State<CategoryDishScreen> {
                 (BuildContext context) => RecipeScreen())
                 );
               }, 
-              icon: Icon(Icons.restaurant)
+              icon: Icon(Icons.casino)
             ),
           ),
         ],

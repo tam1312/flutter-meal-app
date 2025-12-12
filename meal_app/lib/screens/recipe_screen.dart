@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/models/recipe_model.dart';
+import 'package:meal_app/screens/favorites_screen.dart';
 import 'package:meal_app/services/api_service.dart';
 
 class RecipeScreen extends StatefulWidget {
@@ -20,6 +21,16 @@ class _RecipeScreenState extends State<RecipeScreen> {
   bool _isLoading = true;
   final ApiService _apiService = ApiService();
 
+  bool isFavorite = false;
+    void toggleFavorite(){
+      setState(() {
+        isFavorite = !isFavorite;
+      });
+
+      print("favorite kopceto se smeni vo $isFavorite");
+    }
+
+
   @override
   void initState() {
     super.initState();
@@ -28,11 +39,31 @@ class _RecipeScreenState extends State<RecipeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    IconData icon = Icons.favorite_border;
+    
+
+
     return Scaffold(
       backgroundColor: Colors.amber[200],
       appBar: AppBar(
         title: Text('Recipe',),
          backgroundColor: Colors.amber,
+         actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: 
+                    (BuildContext context) => FavoritesScreen()
+                  ),
+                );
+              }, 
+              icon: Icon(Icons.favorite)
+              ),
+          ),
+         ],
       ),
       body: _isLoading 
         ? const Center(child: CircularProgressIndicator())
@@ -61,6 +92,21 @@ class _RecipeScreenState extends State<RecipeScreen> {
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                       ),
+                    ),
+                  ),
+                  SizedBox(height: 30,),
+
+                  // heart icon to save recipe
+                  Center(
+                    child: ElevatedButton.icon(
+                      onPressed: () {
+                        toggleFavorite();
+                      },
+                      icon: Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_outline,
+                        color: Colors.red
+                      ), 
+                      label: Text("Save recipe")
                     ),
                   ),
                   SizedBox(height: 30,),
