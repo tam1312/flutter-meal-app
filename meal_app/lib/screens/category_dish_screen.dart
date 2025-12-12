@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/models/category_dish_model.dart';
+import 'package:meal_app/screens/favorite_screen.dart';
 import 'package:meal_app/screens/recipe_screen.dart';
 import '../services/api_service.dart';
 
@@ -44,9 +45,24 @@ class  _CategoryDishScreenState extends State<CategoryDishScreen> {
         title: Text(widget.title),
         backgroundColor: Colors.amber,
 
-        // go to random recipe
         actions: [
-          Text('Show me a random recipe!'),
+          // heart icon leading to all saved (favorite) recipes
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: () {
+                //print("Favorites icon");
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: 
+                    (BuildContext context) => FavoriteScreen()
+                  ),
+                );
+              }, 
+              icon: Icon(Icons.favorite)
+              ),
+          ),
+          
+          // dice icon leading to a random recipe
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
