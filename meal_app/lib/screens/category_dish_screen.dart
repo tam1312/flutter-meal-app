@@ -59,7 +59,7 @@ class  _CategoryDishScreenState extends State<CategoryDishScreen> {
                 );
               }, 
               icon: Icon(Icons.favorite)
-              ),
+            ),
           ),
           
           // dice icon leading to a random recipe
