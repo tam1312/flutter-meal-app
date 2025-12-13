@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:meal_app/models/recipe_model.dart';
 import 'package:meal_app/screens/favorites_screen.dart';
 import 'package:meal_app/services/api_service.dart';
+import 'package:provider/provider.dart';
+import 'package:meal_app/services/favorites_service.dart';
 
 class RecipeScreen extends StatefulWidget {
 
@@ -21,15 +23,6 @@ class _RecipeScreenState extends State<RecipeScreen> {
   bool _isLoading = true;
   final ApiService _apiService = ApiService();
 
-  bool isFavorite = false;
-    void toggleFavorite(){
-      setState(() {
-        isFavorite = !isFavorite;
-      });
-
-      print("favorite kopceto se smeni vo $isFavorite");
-    }
-
 
   @override
   void initState() {
@@ -39,9 +32,6 @@ class _RecipeScreenState extends State<RecipeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    IconData icon = Icons.favorite_border;
-    
 
 
     return Scaffold(
@@ -98,17 +88,30 @@ class _RecipeScreenState extends State<RecipeScreen> {
 
                   // heart icon to save recipe
                   Center(
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        toggleFavorite();
+                    child: Consumer<FavoritesService> (
+                      builder: (context, favoritesService, _) {
+                        final isFavorite = favoritesService.isFavorite(_recipeDetails!);
+
+                        return ElevatedButton.icon(
+                          onPressed: () {
+                            favoritesService.toggleFavorite(_recipeDetails!);
+                          },
+                          icon: Icon(
+                            isFavorite
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                            color: Colors.red,
+                          ),
+                          label: Text(
+                            isFavorite
+                              ? "Added to favorites"
+                              : "Save recipe",
+                          ),);
                       },
-                      icon: Icon(
-                        isFavorite ? Icons.favorite : Icons.favorite_outline,
-                        color: Colors.red
-                      ), 
-                      label: Text("Save recipe")
                     ),
+                      
                   ),
+                  
                   SizedBox(height: 30,),
 
                   // cooking instructions

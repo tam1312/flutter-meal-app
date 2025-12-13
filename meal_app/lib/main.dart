@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/screens/home_screen.dart';
+import 'package:meal_app/services/favorites_service.dart';
+import 'package:provider/provider.dart';
 
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (_) => FavoritesService(),
+      child: const MyApp()
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {

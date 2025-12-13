@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meal_app/models/recipe_model.dart';
 import 'package:meal_app/screens/recipe_screen.dart';
 
 class FavoritesScreen extends StatefulWidget {
@@ -9,6 +10,12 @@ class FavoritesScreen extends StatefulWidget {
 }
 
 class _FavoritesScreenState extends State<FavoritesScreen> {
+
+  late List<Recipe> favoriteRecipes;
+
+  
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
