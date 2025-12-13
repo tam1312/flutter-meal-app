@@ -12,6 +12,7 @@ class FavoritesScreen extends StatelessWidget {
     final favoriteRecipes = context.watch<FavoritesService>().favorites;
 
     return Scaffold(
+        backgroundColor: Colors.amber[200],
         appBar: AppBar(
         title: Text("Favorite recipes"),
         backgroundColor: Colors.amber,
