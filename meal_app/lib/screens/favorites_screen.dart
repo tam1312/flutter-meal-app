@@ -51,6 +51,14 @@ class FavoritesScreen extends StatelessWidget {
                         .toggleFavorite(recipe);
                     },
                   ),
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => RecipeScreen(id: int.tryParse(recipe.id)), 
+                      )
+                    );
+                  },
                 ),
               );
             },  
