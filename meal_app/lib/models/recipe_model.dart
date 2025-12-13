@@ -1,4 +1,5 @@
 class Recipe {
+  String id;
   String name;
   String img;
   String instructions;
@@ -6,6 +7,7 @@ class Recipe {
   String? youtubeLink;
 
   Recipe ({
+    required this.id,
     required this.name,
     required this.img,
     required this.instructions,
@@ -14,7 +16,8 @@ class Recipe {
   });
 
   Recipe.fromJson(Map<String, dynamic> data)
-    : name = data['strMeal'],
+    : id = data['idMeal'],
+      name = data['strMeal'],
       img = data['strMealThumb'],
       instructions = data['strInstructions'],
       youtubeLink = data['strYoutube'] ?? '',

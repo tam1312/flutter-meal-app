@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/models/recipe_model.dart';
+import 'package:meal_app/screens/favorites_screen.dart';
 import 'package:meal_app/services/api_service.dart';
+import 'package:provider/provider.dart';
+import 'package:meal_app/services/favorites_service.dart';
 
 class RecipeScreen extends StatefulWidget {
 
@@ -20,6 +23,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
   bool _isLoading = true;
   final ApiService _apiService = ApiService();
 
+
   @override
   void initState() {
     super.initState();
@@ -28,11 +32,28 @@ class _RecipeScreenState extends State<RecipeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       backgroundColor: Colors.amber[200],
       appBar: AppBar(
         title: Text('Recipe',),
          backgroundColor: Colors.amber,
+         actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: 
+                    (BuildContext context) => FavoritesScreen()
+                  ),
+                );
+              }, 
+              icon: Icon(Icons.favorite)
+              ),
+          ),
+         ],
       ),
       body: _isLoading 
         ? const Center(child: CircularProgressIndicator())
@@ -63,6 +84,34 @@ class _RecipeScreenState extends State<RecipeScreen> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 30,),
+
+                  // heart icon to save recipe
+                  Center(
+                    child: Consumer<FavoritesService> (
+                      builder: (context, favoritesService, _) {
+                        final isFavorite = favoritesService.isFavorite(_recipeDetails!);
+
+                        return ElevatedButton.icon(
+                          onPressed: () {
+                            favoritesService.toggleFavorite(_recipeDetails!);
+                          },
+                          icon: Icon(
+                            isFavorite
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                            color: Colors.red,
+                          ),
+                          label: Text(
+                            isFavorite
+                              ? "Added to favorites"
+                              : "Save recipe",
+                          ),);
+                      },
+                    ),
+                      
+                  ),
+                  
                   SizedBox(height: 30,),
 
                   // cooking instructions

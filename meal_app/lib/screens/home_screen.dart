@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/models/category_model.dart';
 import 'package:meal_app/screens/category_dish_screen.dart';
+import 'package:meal_app/screens/favorites_screen.dart';
 import 'package:meal_app/screens/recipe_screen.dart';
 import '../services/api_service.dart';
 
@@ -47,7 +48,22 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         backgroundColor: Colors.amber,
         actions: [
-          Text('Show me a random recipe!'),
+          // heart icon leading to all saved (favorite) recipes
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: () {
+                //print("Favorites icon");
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: 
+                    (BuildContext context) => FavoritesScreen()
+                  ),
+                );
+              }, 
+              icon: Icon(Icons.favorite)
+              ),
+          ),
+          // dice icon leading to a random recipe
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
@@ -55,10 +71,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 //print("icon pressed");
                 Navigator.of(context).push(
                 MaterialPageRoute(builder: 
-                (BuildContext context) => RecipeScreen())
+                  (BuildContext context) => RecipeScreen())
                 );
               }, 
-              icon: Icon(Icons.restaurant)
+              icon: Icon(Icons.casino)
             ),
           ),
         ],
