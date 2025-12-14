@@ -83,4 +83,5 @@ class DefaultFirebaseOptions {
     authDomain: 'meal-app-flutter-e2d1a.firebaseapp.com',
     storageBucket: 'meal-app-flutter-e2d1a.firebasestorage.app',
   );
+
 }
