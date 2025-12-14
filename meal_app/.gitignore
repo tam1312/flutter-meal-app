@@ -43,3 +43,38 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub/
+build/
+flutter_*.log
+
+# Android
+android/.gradle/
+android/local.properties
+android/app/debug/
+android/app/profile/
+android/app/release/
+*.iml
+
+# Firebase
+android/app/google-services.json
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/
+ios/Runner.xcworkspace
+ios/Runner/GeneratedPluginRegistrant.*
+ios/Runner/GoogleService-Info.plist
+
+# IDEs
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
+
