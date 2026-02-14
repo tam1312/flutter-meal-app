@@ -16,7 +16,6 @@ class CategoryDishScreen extends StatefulWidget {
   @override
   State <CategoryDishScreen> createState() =>  _CategoryDishScreenState();
 
-  static fromJson(Map<String, dynamic> x) {}
 }
 
 class  _CategoryDishScreenState extends State<CategoryDishScreen> {
